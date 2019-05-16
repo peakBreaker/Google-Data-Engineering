@@ -2,6 +2,7 @@
 
 ### Getting started
 
+#### From Master Node
 Lets run a simple mapreduce:
 
 1. Get a cluster running, regular with one master and two data nodes
@@ -26,3 +27,16 @@ hadoop jar /usr/lib/hadoop-mapreduce/hadoop-streaming.jar \
 
 Each line of the input file is then read, the data is split into its parts and
 a KV pair of interest is spit into stdout (i.e. printed out)
+
+#### Using Gcloud SDK
+1. Authenticate the gcloud sdk
+2. Now run the job, for example here we'll run the java wordcount example
+   provided by the hadoop installation by defult:
+
+```
+gcloud dataproc jobs submit hadoop --cluster peakbreaker-cluster-1 \
+    --region europe-north1 \
+    --jar file:///usr/lib/hadoop-mapreduce/hadoop-mapreduce-examples.jar \
+    -- wordcount gs://peakbreaker-tmp-data/mapr_data/itemData.txt \
+    gs://peakbreaker-tmp-data/mapr_data/mapr_java_outpuT
+```

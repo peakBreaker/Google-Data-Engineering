@@ -32,3 +32,18 @@ Notable for DataProc are some other key features:
   directly anymore
 - Connecting to master instances and running jobs in an old fashion is no
   longer done, we typically submit jobs using the gcloud SDK
+
+### Pre-emptible VMs
+
+Not really all that much to it, You only configure number of pre-emptible
+workers.  These may be reclaimed by GCP at any time, thus you should never
+store data on them (use in conjunction with object storage)
+
+### Initialization actions
+
+Initialization actions is basically a shell script which is run on the
+initializaiton of the instances. Here we can for example install stackdriver
+monitoring on the instances to improve the monitoring.
+
+Using monitoring groups initialization actions we can get a very effective way
+of monitoring our cluster using stackdriver
